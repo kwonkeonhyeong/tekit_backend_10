@@ -1,4 +1,4 @@
-package com.example.day10;
+package com.example.day5;
 
 public class MathBean {
     public void printClassName() {
