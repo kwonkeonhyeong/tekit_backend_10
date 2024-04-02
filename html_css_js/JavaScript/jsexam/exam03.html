@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 문제 1번: 모든 요소의 제곱 구하기
+      const numbers1 = [1, 2, 3, 4, 5];
+      // 여기에 map 함수를 사용하세요.
+      const result1 = numbers1.map((num) => num * num);
+      console.log(result1);
+
+      // 문제 2번: 짝수만 필터링 하기
+      const numbers2 = [1, 2, 3, 4, 5, 6];
+      // 여기에 filter 함수를 사용하세요.
+      const result2 = numbers2.filter((num) => num % 2 == 0);
+      console.log(result2);
+
+      // 문제 3번: 총합 구하기
+      const numbers3 = [1, 2, 3, 4, 5];
+      // 여기에 reduce 함수를 사용하세요.
+      const result3 = numbers3.reduce((acc, cur) => acc + cur, 0);
+      console.log(result3);
+
+      // 문제 4번: 특정 조건의 요소 찾기
+      const people = [
+        { name: "Alice", age: 25 },
+        { name: "Bob", age: 30 },
+        { name: "Charlie", age: 28 },
+      ];
+      // 여기에 find 함수를 사용하세요.
+      const result4 = people.find((p) => p.age >= 30);
+      console.log(result4);
+
+      // 문제 5번: 모든 요소가 조건을 만족하는지 확인하기
+      const numbers5 = [10, 20, 30, 40, 50];
+      // 여기에 every 함수를 사용하세요.
+      const result5 = numbers5.every((num) => num >= 10);
+      console.log(result5);
+
+      // 문제 6번: 조건을 만족하는 요소가 하나라도 있는지 확인하기
+      const numbers6 = [2, 4, 6, 8, 10, 11];
+      // 여기에 some 함수를 사용하세요.
+      const result6 = numbers6.some((num) => num % 2 !== 0);
+      console.log(result6);
+    </script>
+  </body>
+</html>

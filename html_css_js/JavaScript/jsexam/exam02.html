@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const numbers = [1, 2, 3, 4, 5];
+      for (const num of numbers) {
+        console.log(num);
+      }
+
+      const person = {
+        name: "홍길동",
+        age: 25,
+        email: "hong@example.com",
+      };
+
+      for (const key in person) {
+        console.log(`${key} : ${person[key]}`);
+      }
+
+      const numbers2 = [1, 3, 7, 8, 3, 3, 4, 3];
+      const targetNumber = 3;
+      // 여기에 코드를 작성하세요.
+      let count = 0;
+      for (const num of numbers2) {
+        if (num == targetNumber) {
+          count++;
+        }
+      }
+      console.log(count);
+
+      const numbers3 = [10, 36, 54, 89, 12];
+      let max = Number.MIN_VALUE;
+
+      // 여기에 코드를 작성하세요.
+      for (const num of numbers3) {
+        max = Math.max(max, num);
+      }
+      console.log(max);
+
+      const users = [
+        { name: "Alice", age: 25 },
+        { name: "Bob", age: 30 },
+        { name: "Charlie", age: 28 },
+        { name: "Dave", age: 35 },
+      ];
+      // 여기에 코드를 작성하세요.
+      const newUser = [];
+      for (const user of users) {
+        if (user["age"] >= 30) {
+          newUser.push(user);
+        }
+      }
+      console.log(newUser);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const dog = {
+        name: "멍멍이",
+        sound: "멍멍!!",
+        say: function () {
+          console.log(this.sound);
+          console.log(this);
+        },
+
+        arrowSay: () => {
+          console.log(this.sound);
+          console.log(this);
+        },
+      };
+      // 화살표 함수의 this는 항상 window를 가리킨다.
+      // 객체 안에 함수를 넣을 때, 화살표 함수로 선언하면 제대로 작동하지 않는다.
+      // 이유는, function으로 선언한 함수는 this가 제대로 자신이 속한 객체를 가르키게 되는데, 화살표 함수는 그렇지 않기 때문이다.
+      dog.say();
+      dog.arrowSay();
+    </script>
+  </body>
+</html>

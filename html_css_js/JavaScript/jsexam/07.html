@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function add(a) {
+        console.log("a+a");
+        return a + a;
+      }
+
+      function add(a, b) {
+        console.log("a+b");
+        return a + b;
+      }
+
+      // 자바스크립트 메소드가 오버로딩되지 않는다.
+      // add(a), add(a,b)가 구분되지 않는다.
+      // 나중에 선언된 add만 실행된다.
+
+      add(3);
+      add(3, 5);
+      add();
+      add(12, 3, 4, 5, 23);
+      add(12, 3, 4, 5, 23, 1, 23, 3, 5);
+
+      // 자바스크립트는 인자의 개수에 구애받지 않는다.
+      // 값을 보내주면 필요한 인자만 arguments 배열에서 사용하고 나머지는 무시한다.
+      function add(a, b, c) {
+        console.log(arguments.length);
+        console.log("arguments = " + arguments[0]);
+        console.log("arguments = " + arguments[1]);
+        console.log("arguments = " + arguments[2]);
+        console.log("arguments = " + arguments[3]);
+      }
+
+      function hello(name) {
+        console.log(`Hello, ${name}!`);
+      }
+
+      hello("kkh");
+    </script>
+  </body>
+</html>

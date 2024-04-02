@@ -1,5 +1,5 @@
-package ch04;
-
-public class QueueExam {
-    private
-}
+//package ch04;
+//
+//public class QueueExam {
+//    private
+//}

@@ -1,40 +1,49 @@
 package exam;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
+    public static int findMaxScore(int[] array){
+        Arrays.sort(array);
+        int maxScore = array[array.length-1];
+        System.out.println("입력한 값 중 최고 점수 = " + maxScore);
+        return maxScore;
+    }
+    public static void makeAverageArray(int[] array,double a){
+        double[] array2 = new double[array.length];
+        for (int i = 0; i < array.length; i++) {
+
+                array2[i]=array[i]/a*100;}
+
+        System.out.println("점수들을 최고점수로 나눠서 재배열"+ Arrays.toString(array2));
+        double sum = 0;
+        for (int i = 0; i < array2.length; i++) {
+            sum = sum + array2[i];
+        }
+        double result = sum / array2.length;
+        System.out.println("평균 : "+result);
+
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        String[][] inputs = new String[3][4];
-        for (int i = 0; i < inputs.length; i++) {
-            inputs[i] = scanner.nextLine().split(" ");
+        Scanner scanner1 = new Scanner(System.in);
+        System.out.println("과목 수를 입력하세오.");
+        int n = scanner.nextInt();
+        int[] firstExamScores = new int[n];
+        for (int i = 0; i < n; i++) {
+            System.out.println((i+1) +" 번째 과목 점수 입력");
+            int m = scanner1.nextInt();
+            firstExamScores[i]=m;
         }
+        System.out.println("입력한 점수들의 값을 배열로 만듬"+Arrays.toString(firstExamScores));
+        double score1 = findMaxScore(firstExamScores);
+        makeAverageArray(firstExamScores,score1);
 
-        for (int i = 0; i < inputs.length; i++) {
-            int front = 0; // 0
-            int back = 0; // 1
-            for (int j = 0; j < inputs[i].length; j++) {
-                if (inputs[i][j].equals("0")) {
-                    front++;
-                } else {
-                    back++;
-                }
-            }
 
-            if (front == 1) {
-                System.out.println("A");
-            } else if (front == 2) {
-                System.out.println("B");
-            } else if (front == 3) {
-                System.out.println("C");
-            } else if (front == 4) {
-                System.out.println("D");
-            }
 
-            if (back == 4) {
-                System.out.println("E");
-            }
-        }
+
+
     }
 }
