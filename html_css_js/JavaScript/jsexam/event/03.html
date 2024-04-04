@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>배경색 바꾸기</button>
+    <button>초기화</button>
+
+    <script>
+      function changeColor(event) {
+        console.log(event);
+        console.log("event target ::: ");
+        console.log(this);
+        console.log(event.target);
+
+        const color = prompt("색을 입력하세요.");
+        document.body.style.backgroundColor = color;
+      }
+
+      function reset(event) {
+        document.body.style.backgroundColor = "white";
+      }
+
+      const btn = document.querySelectorAll("button");
+      const btn2 = document.getElementsByTagName("button");
+      console.log(btn);
+      console.log(btn2);
+
+      btn[0].addEventListener("click", changeColor);
+      btn[1].addEventListener("click", reset);
+    </script>
+  </body>
+</html>

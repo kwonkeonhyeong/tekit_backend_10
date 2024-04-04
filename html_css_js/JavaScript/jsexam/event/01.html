@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">hello button</button>
+    <script>
+      // event
+      // 소스(대상) - 이벤트리스너(이벤트이름(ex click), 이벤트 핸들러(함수), [ToCapture])
+      function hi() {
+        alert("안녕~~~");
+      }
+      const btn = document.getElementById("btn");
+      console.log(btn);
+      btn.addEventListener("click", hi);
+      //   document.addEventListener("click", hi);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>event exam</title>
+  </head>
+  <body>
+    <form action="06.html" method="get" id="form1">
+      이름 : <input type="text" name="name" id="name" /><br />
+      비밀번호 : <input type="password" name="password" id="password" /><br />
+      비밀번호 확인 :
+      <input type="password" name="checkPassword" id="checkPassword" /><br />
+
+      <input type="submit" value="등록" />
+    </form>
+
+    <script>
+      //이름을 잘 입력했는지체크
+      //비밀번호 두 개가 일치하는지 체크
+
+      //submit   --  이벤트 이름
+      //input요소.value  -- input상자 값을 꺼낼 수 있다.
+      const form = document.getElementById("form1");
+      const n = document.getElementById("name");
+      const pw = document.getElementById("password");
+      const pw2 = document.getElementById("checkPassword");
+
+      form.addEventListener("submit", function check(e) {
+        if (n.value == "") {
+          alert("이름을 입력해주세요");
+
+          e.preventDefault();
+          n.focus();
+        } else if (pw.value == "") {
+          alert("비밀번호를 입력해주세요");
+
+          e.preventDefault();
+          pw.focus();
+        } else if (pw2.value != pw.value) {
+          alert("비밀번호를 다시 확인해주세요");
+
+          e.preventDefault();
+          pw2.focus();
+        } else {
+          alert("회원가입 완료");
+          return;
+        }
+      });
+    </script>
+  </body>
+</html>
