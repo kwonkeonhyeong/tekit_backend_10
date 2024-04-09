@@ -1,0 +1,9 @@
+@import url("reset.css");
+
+body {
+  font-size: 32px;
+}
+
+.done {
+  text-decoration: line-through;
+}
