@@ -1,7 +1,5 @@
 package exam;
 
-import java.util.Arrays;
-
 public class Solution {
     public static void main(String[] args) {
         String[] cards1 = {"i", "water", "drink"};

@@ -8,6 +8,14 @@ public class Book {
     */
     private int price;
 
+    public Book() {
+    }
+
+    public Book(String title, int price) {
+        this.title = title;
+        this.price = price;
+    }
+
     // 메서드
     // 접근제한자 리턴타입 메소드명(매개변수들...) { 구현 }
     // 필드의 값을 수정하고 얻기 위한 메소드를 만든다. setter, getter
@@ -27,4 +35,5 @@ public class Book {
     public void setPrice(int price) { // 지역변수 price
         this.price = price;
     }
+
 }
