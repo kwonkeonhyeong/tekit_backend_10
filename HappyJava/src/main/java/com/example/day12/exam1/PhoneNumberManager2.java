@@ -24,6 +24,7 @@ public class PhoneNumberManager2 {
                 System.out.print("전화번호: ");
                 String number = reader.readLine();
                 writer.write((name + "\t" + number + "\n"));
+                writer.flush();
             }
             System.out.println("... 전화번호가 " + files + "에 저장되었습니다.");
 
