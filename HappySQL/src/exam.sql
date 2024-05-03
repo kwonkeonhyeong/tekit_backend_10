@@ -146,3 +146,220 @@ select extract(DAY from emp.hiredate) from emp;
 select extract(HOUR from current_timestamp());
 select extract(MINUTE from current_timestamp());
 select extract(SECOND from current_timestamp());
+
+select ename, job, sal from emp where deptno between 20 and 10;
+select ename, job, sal from emp where sal between 1800 and 3000;
+
+desc emp;
+desc dept;
+
+select * from emp;
+select * from dept;
+select deptno, ename from emp;
+
+-- 사원 이름과 부서 이름을 알고 싶다.
+select ename, dname from emp, dept;
+select e.ename, d.dname from emp e, dept d;
+select ename, dname from emp e, dept d;
+select ename, dname, e.deptno from emp e, dept d; -- 중복되는 칼럼명앞에는 반드시 테이블을 명시해야함.
+
+select e.ename, d.dname from emp e, dept d
+where e.deptno = d.deptno; -- 조인 조건
+
+
+-- 사원이름, 부서면, 급여를 조회해주세요. 단 급여가 2500이상이고, 부서가 research 부서 사원만 조회하세요.
+select e.ename, e.sal
+from emp e, dept d
+where e.deptno = d.deptno
+  and e.sal >= 2500
+  and d.dname = 'RESEARCH';
+
+desc SALGRADE;
+select * from SALGRADE;
+
+-- 이름, 급여, 등급을 조회하세요. theta join!!
+select e.ename, e.sal, g.grade
+from emp e, SALGRADE g
+where e.sal between g.LOSAL and g.HISAL;
+
+desc emp;
+desc dept;
+select e.ename, d.dname
+from emp e
+natural join dept d; -- 두 테이블에 같은 이름의 칼럼들을 모두 조인조건으로 사용한다.
+
+select * from emp;
+
+-- join using 칼럼명을 지정해줌 .. 두개 테이블에 칼럼이 같은 이름 되어있어야함.
+select e.ename, d.dname
+from emp e join dept d using (deptno);
+
+-- join on 조건을 직접 기술.
+select e.ename, d.dname
+from emp e join dept d on (e.deptno = d.deptno)
+where d.deptno = 20;
+
+
+INSERT INTO EMP VALUES (1000,'KWON','CLERK',7902,STR_TO_DATE('17-12-1980','%d-%m-%Y'),800,NULL,NULL);
+
+-- outer join 조건에 만족하지 않은 데이터도 같이 보고 싶을때.
+select e.ename, d.dname from emp e, dept d
+where e.deptno = d.deptno;
+
+select e.ename, d.dname
+from emp e left outer join dept d using (deptno)
+union
+select e.ename, d.dname
+from emp e right outer join dept d using (deptno);
+
+select * from emp;
+
+select e.empno 사원명, m.ename 매니저명
+from emp e, emp m
+where e.mgr = m.empno;
+
+-- 사원이름, 매니저이름을 출력하세요. 단 매니저가 없는 사원도 출력하세요.
+select e.ename 사원이름, m.ename 매니저이름 from emp e left outer join emp m on (e.mgr = m.empno);
+
+
+-- subquery
+select * from emp;
+
+-- SMITH가 속한 부서의 급여 평균을 알고 싶어요.
+-- 1. 스미스의 부서 번호는??
+-- 2. 급여 평균을 ...
+-- 쿼리 한 번에 원하는 결과를 얻어내지 못할 때가 있어요.
+select * from emp;
+select avg(sal) from emp where deptno = (select deptno from emp where ename='MARTIN');
+
+-- SCOTT 급여보다 높은 급여를 받는 사람의 이름을 출력하시오.
+-- 1. SCOTT 급여는??
+select ename from emp
+where sal = (select sal from emp where ename = 'SCOTT');
+
+select ename
+from emp
+order by ename
+limit 1;
+
+select MIN(ename) from emp;
+
+select ename, sal
+from emp
+where sal < (select avg(sal) from emp);
+
+select deptno from dept d where d.dname = 'SALES';
+
+select ename,deptno from emp where deptno = (select deptno from dept d where d.dname = 'SALES');
+
+select min(ename) from emp group by deptno;
+
+select ename, sal, deptno from emp
+where ename = (select min(ename) from emp group by deptno); -- 오류
+
+select ename, sal, deptno from emp
+where ename in (select min(ename) from emp group by deptno);
+
+
+-- in (= or) 결함.
+select *
+from emp
+where ename in ('KANG','CLARK','ADAMS','ALLEN');
+
+select *
+from emp
+where ename = 'KANG' or ename = 'CLARK' or ename = 'ADAMS' or ename = 'ALLEN';
+
+-- any all > any < any <= any any - or all - and
+
+-- > any or
+select avg(sal) from emp group by deptno;
+
+select * from emp
+where sal > any (select avg(sal) from emp group by deptno);
+
+select * from emp
+where sal > 2916 or sal > 1782 or sal > 1566 or sal > 800;
+
+-- >all > and
+select * from emp
+where sal > all  (select avg(sal) from emp group by deptno);
+
+select * from emp
+where sal > 2916 and sal > 1782 and sal > 1566 and sal > 800;
+
+-- =any ( = or ) = in 하고 같다
+
+-- 서브 쿼리가 실행될 때 바깥쪽 row의 값을 이용해서 결과 값을 얻어내는 쿼리.
+
+-- 각 부서별로 최고 급여를 받는 사원정보를 출력하시오.
+
+-- 자기 부서의 평균 급여보다 많이 받는 사원의 정보를 출력해주세요.
+# select avg(sal) from emp where deptno = ?;
+
+select * from emp;
+
+select * from emp oe
+where sal > (select avg(sal) from emp ie where ie.deptno = oe.deptno);
+
+-- 부서별로 최고 급여를 받는 사원의 정보를 출력
+select deptno,max(sal) from emp group by deptno;
+
+select * from emp
+where (deptno, sal) in (select deptno,max(sal) from emp group by deptno);
+
+select s.deptno,max(s.sal) msal from emp s group by deptno;
+
+select e.deptno, e.empno, e.ename, e.sal from emp e, (select s.deptno,max(s.sal) msal from emp s group by deptno) m
+where e.deptno = m.deptno and e.sal = m.msal;
+
+
+select deptno, empno, ename, sal
+from emp e
+where e.sal = (select max(sal) from emp where deptno = e.deptno);
+
+select max(sal) from emp where deptno = 30;
+
+create table a(
+    name int
+);
+
+create table b (
+    name int
+);
+
+show tables;
+
+insert into a (name) value ('1');
+insert into a value ('2');
+insert into a value ('3');
+
+select * from a;
+
+insert into b value ('2');
+insert into b value ('3');
+insert into b value ('4');
+
+select * from b;
+
+select * from a
+union
+select * from b;
+
+select * from a
+union all
+select * from b;
+
+-- mysql에서는 intersect가 지원되지 않아서 다른 구문으로 사용해야함.
+select a.name from a,b where a.name = b.name;
+
+-- mysql에서는 minus가 지원되지 않아서 다른 구문으로 사용해야함.
+select a.name from a where a.name not in (select name from b);
+
+drop table a;
+drop table b;
+
+show tables;
+
+select sal, emp.ename, rank() over (order by sal desc )
+from emp;
