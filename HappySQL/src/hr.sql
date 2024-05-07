@@ -258,3 +258,40 @@ select department_name, avg(salary)
 
 -- 문제 2: 최고 급여를 받는 직원의 이름과 급여를 조회하세요.
 select e.first_name, e.last_name, e.salary from employees e where e.salary = (select max(salary) from employees);
+
+
+-- 문제 3 : 각 부서에서 근무하는 직원 수를 조회하세요.
+select department_name,count(e.employee_id)
+from departments d
+    left join employees e
+        using (department_id)
+group by department_id;
+
+-- 문제 4 : 각 직원의 이름, 직무 타이틀, 부서 이름을 조회하세요.
+select e.first_name, e.last_name, j.job_title, d.department_name from employees e
+    join jobs j using (job_id)
+    join departments d using (department_id);
+
+-- 문제 5 : 각 직원의 입사일로부터 경과한 일수를 조회하세요.
+select e.first_name, e.last_name, e.hire_date, DATEDIFF(curdate(), hire_date) as diff from employees e;
+
+-- 문제 6 : 모든 직원의 이름과 그들의 매니저 이름을 조회하세요.
+
+SELECT e.first_name AS Employee_FirstName, e.last_name AS Employee_LastName,
+       m.first_name AS Manager_FirstName, m.last_name AS Manager_LastName
+FROM employees e
+         LEFT JOIN employees m ON e.manager_id = m.employee_id;
+
+-- 문제 7 : 국가 코드가 'US'인 모든 위치의 도시 이름을 조회하세요.
+SELECT l.city
+FROM locations l
+         JOIN countries c ON l.country_id = c.country_id
+where c.country_id = 'US';
+
+
+select first_name, last_name, salary from employees where job_id = 'IT_PROG';
+
+show tables;
+
+desc countries;
+select * from countries;
