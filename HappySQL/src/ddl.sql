@@ -97,7 +97,6 @@ create table students
     check ( email like '%@%.%')
 );
 
-
 SELECT @@AUTOCOMMIT;
 
 insert into students(id, name, email, reg_date, major_id)
@@ -167,3 +166,7 @@ where item_name = '피자';
 
 insert into menu(item_name, price, category)
 values ('짜장면', 6000, '매우패스트푸드');
+
+truncate menu;
+-- 데이블구조만 남기고 데이터만 모두 삭제할때..
+-- 트렌잭션 제어를 받지않으므로 빠르다.롤백할 수 없으므로 주의해서 사용!!
