@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserDaoImpl implements UserDao{
+public class UserCaramiDaoImpl implements UserDao{
     @Override
     public User getUser(String email) {
         return null;
@@ -14,11 +14,11 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public List<User> getUsers() {
-        return null;
+        return List.of();
     }
 
     @Override
     public void addUser(User user) {
-        System.out.println(user + "의 정보가 잘 저장되었습니다.");
+        System.out.println(user + "의 정보를 CaramiDao를 통해 잘 저장했습니다.");
     }
 }
