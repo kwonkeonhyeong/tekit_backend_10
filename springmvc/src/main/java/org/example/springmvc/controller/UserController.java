@@ -23,9 +23,9 @@ public class UserController {
 
     private List<User> users() {
         List<User> userList = Arrays.asList(
-          new User("권뭉치", true),
-          new User("권건형", false),
-          new User("권까루", true)
+//          new User("권뭉치", true),
+//          new User("권건형", false),
+//          new User("권까루", true)
         );
         return userList;
     }

@@ -8,6 +8,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class User {
-    private String name;
-    private boolean isManager;
+    private String username;
+    private String password;
 }
