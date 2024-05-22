@@ -9,9 +9,17 @@ import org.springframework.boot.Banner.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class ExamController {
+    @GetMapping("/guest/{name}")
+    public String guest(@PathVariable String name) {
+        System.out.println(name);
+        return "redirect:/visit2";
+    }
+
+
     @GetMapping("/welcome")
     public String welcome(Model model) {
         model.addAttribute("welcomeMsg", "어서와~ 아아 먹을래??");
