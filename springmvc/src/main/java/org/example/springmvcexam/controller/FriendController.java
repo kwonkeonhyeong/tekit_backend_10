@@ -6,6 +6,7 @@ import org.example.springmvcexam.domain.Friend;
 import org.example.springmvcexam.domain.FriendsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,3 +32,4 @@ public class FriendController {
         return "signup";
     }
 }
+
