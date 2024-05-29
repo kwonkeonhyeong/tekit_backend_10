@@ -5,38 +5,52 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 public class UserDAO {
-//    private EntityManagerFactory emf;
-//
-//    public UserDAO() {
-//        emf = Persistence.createEntityManagerFactory("UserPU");
-//    }
-//
-//    public void close() {
-//        if (emf != null) {
-//            emf.close();
-//        }
-//    }
+
+    public void deleteUser(User user) {
+        EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            em.getTransaction().begin();
+
+            em.remove(em.contains(user) ? user : em.merge(user));
+
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+
+    public void updateUser(User user) {
+        EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            em.getTransaction().begin();
+
+            em.merge(user);
+
+            em.getTransaction().commit();
+        }finally {
+
+        }
+    }
 
     public User findUser(Long id) {
-        EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+        EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
         try {
-            User user = entityManager.find(User.class, id);
-            entityManager.close();
+            User user = em.find(User.class, id);
+            em.close();
             return user;
         } finally {
-            entityManager.close();
+            em.close();
         }
     }
 
     public void createUser(User user) {
-        // EntityManager entityManager = emf.createEntityManager();
-        EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+        EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
         try {
-            entityManager.getTransaction().begin();
-            entityManager.persist(user);
-            entityManager.getTransaction().commit();
+            em.getTransaction().begin();
+            em.persist(user);
+            em.getTransaction().commit();
         } finally {
-            entityManager.close();
+            em.close();
         }
     }
 }
